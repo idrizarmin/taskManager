@@ -48,6 +48,24 @@ class TaskRepository {
     }
   }
 
+  Future<void> update(String taskId, bool isActive) async {
+    try {
+      final String url = "${Constansts.apiUrlEdit}/$taskId.json";
+
+      final response = await http.patch(
+        Uri.parse(url),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({"isActive": isActive}),
+      );
+
+      if (response.statusCode != HttpStatus.ok) {
+        throw Exception("Failed to update task: ${response.statusCode}");
+      }
+    } catch (e) {
+      throw Exception("Fail to update task.");
+    }
+  }
+
   Future delete(String taskId) async {
     try {
       final String url = "${Constansts.apiUrlDelete}/$taskId/.json";

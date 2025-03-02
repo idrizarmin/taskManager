@@ -48,10 +48,14 @@ class _HomePageState extends State<HomePage> {
       body: BlocConsumer<TaskBloc, TaskState>(
         listener: (context, state) {
           if (state is TaskFinishedState) {
-            _showMessage(Constansts.successAddEditTask);
+            _showMessage(Constansts.successAddTask);
             _taskBloc.add(TaskLoadEvent());
           } else if (state is TaskDeletedState) {
             _showMessage(Constansts.successDeleteTask);
+          } else if (state is TaskUpdatedState) {
+            // 👈 Ovdje obrađujemo ažuriranje
+            _showMessage(Constansts.successEditTask);
+            _taskBloc.add(TaskLoadEvent());
           }
         },
         builder: (context, state) {
@@ -107,7 +111,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _onPressedEdit(TaskResponseModel task) {
-    setState(() => task.isActive = !task.isActive);
+    _taskBloc.add(TaskEditEvent(taskId: task.id, isActive: !task.isActive));
   }
 
   void _onPressedDelete(String id) {

@@ -17,6 +17,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<TaskLoadEvent>(_load);
     on<TaskAddEvent>(_add);
     on<TaskDeleteEvent>(_delete);
+    on<TaskEditEvent>(_edit);
   }
 
   FutureOr<void> _load(TaskLoadEvent event, Emitter<TaskState> emit) async {
@@ -43,6 +44,18 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       await _taskRepository.add(upsertDto);
 
       emit(TaskFinishedState());
+    } catch (e) {
+      emit(TaskFailureState());
+    }
+  }
+
+  FutureOr<void> _edit(TaskEditEvent event, Emitter<TaskState> emit) async {
+    try {
+      emit(TaskLoadingState());
+
+      await _taskRepository.update(event.taskId, event.isActive);
+
+      emit(TaskUpdatedState());
     } catch (e) {
       emit(TaskFailureState());
     }

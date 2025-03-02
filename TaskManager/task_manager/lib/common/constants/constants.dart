@@ -5,6 +5,9 @@ class Constansts {
   static const String apiUrlDelete =
       'https://fir-task-menanger-default-rtdb.europe-west1.firebasedatabase.app/users/100/task';
 
+  static const String apiUrlEdit =
+      'https://fir-task-menanger-default-rtdb.europe-west1.firebasedatabase.app/users/100/task';
+
   static const String applicationTitle = "Simple Task Menanger";
   static const String errorOnLoadTasks =
       "Došlo je do greške prilikom učitavanja zadataka.";
@@ -16,6 +19,7 @@ class Constansts {
   static const String addTask = "Dodaj zadatak";
   static const String endTask = "Završi";
   static const String deleteTask = "Poništi zadatak";
-  static const String successAddEditTask = "Uspješno ste dodali zadatak!";
+  static const String successAddTask = "Uspješno ste dodali zadatak!";
+  static const String successEditTask = "Uspješno ste izmjenuli zadatak!";
   static const String successDeleteTask = "Uspješno ste izbrisali zadatak!";
 }

@@ -43,6 +43,13 @@ final class TaskFinishedState extends TaskState {
   List<Object?> get props => [];
 }
 
+final class TaskUpdatedState extends TaskState {
+  const TaskUpdatedState();
+
+  @override
+  List<Object?> get props => [];
+}
+
 final class TaskDeletedState extends TaskState {
   const TaskDeletedState();
 

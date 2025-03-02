@@ -13,11 +13,22 @@ class TaskAddEvent extends TaskEvent {
   final String? id;
   final String title;
   final String description;
+  final bool isActive = true;
 
   const TaskAddEvent({this.id, required this.title, required this.description});
 
   @override
   List<Object?> get props => [id, title, description];
+}
+
+class TaskEditEvent extends TaskEvent {
+  final String taskId;
+  final bool isActive;
+
+  const TaskEditEvent({required this.taskId, required this.isActive});
+
+  @override
+  List<Object?> get props => [taskId, isActive];
 }
 
 class TaskDeleteEvent extends TaskEvent {
